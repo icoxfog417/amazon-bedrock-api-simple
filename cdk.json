@@ -1,5 +1,5 @@
 {
-  "app": "npx ts-node --prefer-ts-exts bin/cdk_examples.ts",
+  "app": "npx tsx bin/bedrock-api.ts",
   "watch": {
     "include": [
       "**"

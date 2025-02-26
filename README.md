@@ -1,14 +1,27 @@
-# Welcome to your CDK TypeScript project
+# Bedrock Chat API Solution
 
-This is a blank project for CDK development with TypeScript.
+The solution implements an API endpoint that integrates API Gateway with AWS Lambda to interact with Amazon Bedrock's Claude 3 Haiku model. Here's what's been implemented:
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+1. **CDK Stack (lib/cdk_examples-stack.ts)**:
+   - Creates a Lambda function with Node.js 18.x runtime
+   - Configures IAM permissions for Bedrock access
+   - Sets up API Gateway with a POST /chat endpoint
+   - Outputs the API endpoint URL
 
-## Useful commands
+2. **Lambda Function (lambda/bedrock-chat.ts)**:
+   - Uses the Bedrock Runtime Client with ConverseCommand
+   - Accepts messages through API Gateway POST requests
+   - Formats the conversation for Claude 3 Haiku model
+   - Returns the model's response
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `npx cdk deploy`  deploy this stack to your default AWS account/region
-* `npx cdk diff`    compare deployed stack with current state
-* `npx cdk synth`   emits the synthesized CloudFormation template
+3. **Dependencies**:
+   - Added @aws-sdk/client-bedrock-runtime package
+
+To test the API:
+1. Deploy the stack using `cdk deploy`
+2. Send a POST request to the API endpoint with JSON body: 
+```json
+{
+    "message": "Your question here"
+}
+```
